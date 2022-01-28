@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from 'react';
+import React from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import styles from './styles.module.css';
 import CalendarSvg from '../../img/calendar.svg';
@@ -25,18 +25,13 @@ const DateFilter = ({
 		const [start, end] = dates;
 		setStartDate(start);
 		setEndDate(end);
-		if (dates[1] !== null) {
+
+		if (end !== null) {
 			navigate(`?dateFrom=${start.toISOString()}&dateTo=${end.toISOString()}`);
 			setVisibleCalendar(false);
 			filterByDate(start, end);
 		}
 	};
-
-	const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-		<Button variant={'primary'} className="mb-2" onClick={onClick} ref={ref}>
-			{value ? value : '2022'}
-		</Button>
-	));
 
 	return (
 		<>
@@ -55,6 +50,14 @@ const DateFilter = ({
 				height: 15px;
 				top: 7px;
 			}
+			.react-datepicker__navigation{
+				top: 15px
+			}
+			.react-datepicker__header__dropdown.react-datepicker__header__dropdown--select{
+				display: flex;
+				justify-content: space-around;
+				margin: 20px 0px 5px;
+    	}
 		`}</style>
 			<div
 				className={`position-fixed ${styles['calendar']} ${visibleCalendar && styles['open']}`}
@@ -77,31 +80,22 @@ const DateFilter = ({
 						onClick={(e) => {
 							e.stopPropagation();
 							resetButtonHandler();
-							setStartDate(new Date());
-							setEndDate(null);
 						}}
 					>Сбросить</Button>
 				</div>
 				}
 				{visibleCalendar &&
 				<>
-					<div className="text-center">
-						<DatePicker
-							selected={startDate}
-							onChange={(date) => {
-								setStartDate(date);
-							}}
-							showYearPicker
-							dateFormat="yyyy"
-							customInput={<ExampleCustomInput />}
-						/>
-					</div>
 					<DatePicker
 						selected={startDate}
 						onChange={onChange}
 						startDate={startDate}
 						endDate={endDate}
 						locale="ru-RU"
+						peekNextMonth
+						showMonthDropdown
+						showYearDropdown
+						dropdownMode="select"
 						selectsRange
 						inline
 					/>

@@ -22,8 +22,8 @@ const GoBackButton = ({ route }) => {
 				}
 			</style>
 			<div
-				className="d-flex flex-column align-items-center justify-content-center position-fixed mx-3 navigation-buttons"
-				style={{ left: 0, top: '0', bottom: 0 }}
+				className="d-flex flex-column align-items-center justify-content-end  justify-content-sm-center position-fixed mx-3 navigation-buttons"
+				style={{ left: 0, top: '0', bottom: '10px' }}
 			>
 				<Button
 					variant={'secondary'}
@@ -32,7 +32,7 @@ const GoBackButton = ({ route }) => {
 				>&lt; Назад</Button>
 				<Button
 					variant={'secondary'}
-					className={'navigation-button ms-2'}
+					className={'navigation-button '}
 					onClick={() => navigate('/')}
 				>Главная</Button>
 			</div>

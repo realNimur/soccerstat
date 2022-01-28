@@ -15,6 +15,14 @@
     animation: .5s rideCalendar forwards linear;
 }
 
+@media all and (max-width: 575px){
+    .calendar {
+        transform: translateY(-50%);
+        top: 50%;
+        right: 10px;
+    }
+}
+
 @keyframes rideCalendar {
     0% {
         right: -500px;
