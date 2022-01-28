@@ -32,9 +32,12 @@ const TableResultItem = (
 						<span className={'ms-2 bg-warning p-1'}>ПЕРЕНЕСЕНО</span>}</td>
 				</tr>
 			}
+			{isCompetitionMatch &&
+			<tr className={'d-sm-none'}><td colSpan={colTable}>{timeMatch}{status === 'POSTPONED' && <p className={'ms-2 bg-warning p-1 small'}>ПЕРЕНЕСЕНО</p>}</td></tr>
+			}
 			<tr>
 				{isCompetitionMatch &&
-				<td>{timeMatch}{status === 'POSTPONED' && <p className={'ms-2 bg-warning p-1 small'}>ПЕРЕНЕСЕНО</p>}</td>
+				<td className={'d-none d-sm-table-cell'}>{timeMatch}{status === 'POSTPONED' && <p className={'ms-2 bg-warning p-1 small'}>ПЕРЕНЕСЕНО</p>}</td>
 				}
 				<td>
 					{winner === 'HOME_TEAM' && <Badge bg="success" className={'mx-2'} pill>Winner</Badge>}

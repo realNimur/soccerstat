@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const useDateFilter = (originalArray) => {
+
 	let { search, pathname } = useLocation();
 	const navigate = useNavigate();
 	const [filteredArray, setFilteredArray] = useState([]);
@@ -27,11 +28,12 @@ const useDateFilter = (originalArray) => {
 		});
 		setFilteredArray(filteredArray);
 	};
+
 	const resetButtonHandler = () => {
 		setStartDate(null);
 		setEndDate(null);
-		navigate(pathname)
-		setFilteredArray(originalArray)
+		navigate(pathname);
+		setFilteredArray(originalArray);
 	};
 
 	useEffect(() => {

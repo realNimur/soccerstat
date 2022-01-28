@@ -29,12 +29,12 @@ const GoBackButton = ({ route }) => {
 					variant={'secondary'}
 					className={'navigation-button mb-2'}
 					onClick={() => navigate(route)}
-				>&lt; Back</Button>
+				>&lt; Назад</Button>
 				<Button
 					variant={'secondary'}
 					className={'navigation-button ms-2'}
 					onClick={() => navigate('/')}
-				>Main</Button>
+				>Главная</Button>
 			</div>
 		</>
 	);
