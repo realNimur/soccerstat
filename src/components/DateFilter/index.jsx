@@ -65,7 +65,6 @@ const DateFilter = ({
 				{!visibleCalendar &&
 				<div
 					className={`d-flex flex-column align-items-center border-0 p-3 bg-warning small ${styles['button-opacity']}`}
-					type={'button'}
 					onClick={() => setVisibleCalendar(true)}
 				>
 					<img width={60} height={60} src={CalendarSvg} alt="calendar" className={'mb-3'} />
