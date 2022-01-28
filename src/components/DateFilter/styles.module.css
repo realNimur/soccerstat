@@ -1,0 +1,25 @@
+.button-opacity {
+    opacity: .4;
+    transition: .5s;
+}
+
+.button-opacity:hover {
+    opacity: 1;
+}
+
+.calendar {
+    top: 10px;
+    right: 10px;
+}
+.calendar.open{
+    animation: .5s rideCalendar forwards linear;
+}
+
+@keyframes rideCalendar {
+    0% {
+        right: -500px;
+    }
+    100% {
+        right: 10px;
+    }
+}

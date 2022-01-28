@@ -1,25 +1,71 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { routes } from './routes';
+import React, { createContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import Loader from './components/Loader';
+import ErrorPush from './components/ErrorPush';
+
+export const Context = createContext([]);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [competitionList, setCompetitionList] = useState([]);
+	const [competitioinFavoriteIds, setCompetitioinFavoriteIds] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+
+	useEffect(async () => {
+		setLoading(true);
+		const competitioinsFavorite = ['Premier League', 'Bundesliga', 'Serie A', 'Primera Division', 'Ligue 1'];
+		const newCompetitionList = [];
+		const newCompetitioinFavoriteIds = [];
+
+		try {
+			const request = await axios.get(`https://api.football-data.org/v2/competitions/`, {
+				params: {
+					plan: 'TIER_ONE',
+				},
+				headers: {
+					'X-Auth-Token': process.env.REACT_APP_API_KEY
+				}
+			});
+
+			request.data.competitions.forEach(competitioin => {
+				competitioinsFavorite.forEach(competitioinFavorite => {
+					if (competitioin.name === competitioinFavorite) {
+						newCompetitionList.push(competitioin);
+						newCompetitioinFavoriteIds.push(competitioin.id);
+					}
+				});
+			});
+
+			setCompetitioinFavoriteIds(newCompetitioinFavoriteIds);
+			setCompetitionList(newCompetitionList);
+		} catch (e) {
+			setError(e.message);
+		}
+		setLoading(false);
+	}, []);
+
+	if (loading) {
+		return <Loader />;
+	}
+
+	return (
+		<Context.Provider value={{ competitionList, competitioinFavoriteIds }}>
+			<div className="App d-flex justify-content-center">
+				{error && <ErrorPush text={error}/>}
+				<BrowserRouter>
+					<Routes>
+						{routes.map(({ url, Component }) => {
+							return <Route path={url} element={<Component />} key={url} />;
+						})}
+					</Routes>
+				</BrowserRouter>
+			</div>
+
+		</Context.Provider>
+	);
 }
 
 export default App;
