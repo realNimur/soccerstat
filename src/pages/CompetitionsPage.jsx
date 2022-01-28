@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import GoBack from '../components/GoBackButton';
-import CompetitionItem from '../components/CompetitionItem';
 import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
 import { Context } from '../App';
-import useSearchInput from '../customHooks/useSearchInput';
 import { useNavigate } from 'react-router-dom';
 import { MAIN_ROUTE } from '../routes';
+import useSearchInput from '../customHooks/useSearchInput';
+import GoBack from '../components/GoBackButton';
+import CompetitionItem from '../components/CompetitionItem';
+
 
 const CompetitionsPage = () => {
 	const navigate = useNavigate();

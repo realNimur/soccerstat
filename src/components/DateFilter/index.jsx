@@ -1,11 +1,11 @@
 import React from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
-import styles from './styles.module.css';
-import CalendarSvg from '../../img/calendar.svg';
-import 'react-datepicker/dist/react-datepicker.css';
-import es from 'date-fns/locale/ru';
-import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import es from 'date-fns/locale/ru';
+import 'react-datepicker/dist/react-datepicker.css';
+import CalendarSvg from '../../img/calendar.svg';
+import styles from './styles.module.css';
 
 registerLocale('ru-RU', es);
 

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const useDateFilter = (originalArray) => {
-
 	let { search, pathname } = useLocation();
 	const navigate = useNavigate();
 	const [filteredArray, setFilteredArray] = useState([]);

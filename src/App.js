@@ -1,10 +1,10 @@
-import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { routes } from './routes';
 import React, { createContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import Loader from './components/Loader';
 import ErrorPush from './components/ErrorPush';
+import { routes } from './routes';
+import axios from 'axios';
+import './App.css';
 
 export const Context = createContext([]);
 
@@ -54,7 +54,7 @@ function App() {
 	return (
 		<Context.Provider value={{ competitionList, competitioinFavoriteIds }}>
 			<div className="App d-flex justify-content-center">
-				{error && <ErrorPush text={error}/>}
+				{error && <ErrorPush text={error} />}
 				<BrowserRouter>
 					<Routes>
 						{routes.map(({ url, Component }) => {
@@ -63,7 +63,6 @@ function App() {
 					</Routes>
 				</BrowserRouter>
 			</div>
-
 		</Context.Provider>
 	);
 }

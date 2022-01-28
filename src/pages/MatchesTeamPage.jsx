@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import GoBack from '../components/GoBackButton';
-import TableResult from '../components/TableResult';
+import { TEAMS_ROUTE } from '../routes';
 import { Col, Container, Row } from 'react-bootstrap';
 import DateFilter from '../components/DateFilter';
 import useDateFilter from '../customHooks/useDateFilter';
-import { TEAMS_ROUTE } from '../routes';
+import GoBack from '../components/GoBackButton';
+import TableResult from '../components/TableResult';
 import ErrorPush from '../components/ErrorPush';
 import Loader from '../components/Loader';
 
@@ -26,7 +26,6 @@ const MatchesTeamPage = () => {
 		resetButtonHandler,
 		filteredArray
 	} = useDateFilter(matchesTeam);
-
 
 
 	useEffect(async () => {

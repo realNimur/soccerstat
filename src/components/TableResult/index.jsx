@@ -10,7 +10,6 @@ const TableResult = ({ matchList, paramId, variant = 'matchTeam' }) => {
 	return (
 		<Table striped bordered hover>
 			<tbody className={'small text-center align-middle'}>
-
 			{
 				matchList.length === 0 &&
 				<tr>
@@ -31,7 +30,7 @@ const TableResult = ({ matchList, paramId, variant = 'matchTeam' }) => {
 					status,
 					utcDate: date,
 				} = match;
-				let fullDate = null;
+				let fullDate;
 				let timeMatch = null;
 				let utcHours = null;
 				let utcMinutes = null;
@@ -63,25 +62,25 @@ const TableResult = ({ matchList, paramId, variant = 'matchTeam' }) => {
 				}
 
 				return <TableResultItem
-						key={id}
-						fullDate={fullDate}
-						colTable={colTable}
-						isCompetitionMatch={isCompetitionMatch}
-						status={status}
-						awayTeamExtraScore={awayTeamExtraScore}
-						homeTeamExtraScore={homeTeamExtraScore}
-						awayTeamPenaltiesScore={awayTeamPenaltiesScore}
-						homeTeamPenaltiesScore={homeTeamPenaltiesScore}
-						timeMatch={timeMatch}
-						winner={winner}
-						homeTeamId={homeTeamId}
-						homeTeamName={homeTeamName}
-						paramId={paramId}
-						homeTeamScore={homeTeamScore}
-						awayTeamId={awayTeamId}
-						awayTeamName={awayTeamName}
-						awayTeamScore={awayTeamScore}
-					/>
+					key={id}
+					fullDate={fullDate}
+					colTable={colTable}
+					isCompetitionMatch={isCompetitionMatch}
+					status={status}
+					awayTeamExtraScore={awayTeamExtraScore}
+					homeTeamExtraScore={homeTeamExtraScore}
+					awayTeamPenaltiesScore={awayTeamPenaltiesScore}
+					homeTeamPenaltiesScore={homeTeamPenaltiesScore}
+					timeMatch={timeMatch}
+					winner={winner}
+					homeTeamId={homeTeamId}
+					homeTeamName={homeTeamName}
+					paramId={paramId}
+					homeTeamScore={homeTeamScore}
+					awayTeamId={awayTeamId}
+					awayTeamName={awayTeamName}
+					awayTeamScore={awayTeamScore}
+				/>;
 			})}
 			</tbody>
 		</Table>

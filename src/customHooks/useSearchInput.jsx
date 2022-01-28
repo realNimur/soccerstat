@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const useSearchInput = (originalList, searchCell) => {
+	const [filterValue, setFilterValue] = useState('');
+	const [filteredList, setFilteredList] = useState([]);
 	let { search, pathname } = useLocation();
 	const navigate = useNavigate();
 	const query = new URLSearchParams(search).get('search');
-
-
-	const [filterValue, setFilterValue] = useState('');
-	const [filteredList, setFilteredList] = useState([]);
 
 	const filterByName = (text) => {
 		const newFilteredArray = originalList.slice().filter((item) => {

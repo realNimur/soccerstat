@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Col, Container, Row } from 'react-bootstrap';
+import { COMPETITIONS_ROUTE } from '../routes';
 import GoBack from '../components/GoBackButton';
 import TableResult from '../components/TableResult';
 import DateFilter from '../components/DateFilter';
-import { Col, Container, Row } from 'react-bootstrap';
 import useDateFilter from '../customHooks/useDateFilter';
 import Loader from '../components/Loader';
-import { COMPETITIONS_ROUTE } from '../routes';
 import ErrorPush from '../components/ErrorPush';
 
 const MatchesCompetitionPage = () => {
@@ -71,7 +71,6 @@ const MatchesCompetitionPage = () => {
 					</Col>
 				</Row>
 			</Container>
-
 		</>
 	);
 };

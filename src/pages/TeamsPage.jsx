@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import GoBack from '../components/GoBackButton';
-import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
-import TeamItem from '../components/TeamItem';
-import { Context } from '../App';
-import axios from 'axios';
-import useSearchInput from '../customHooks/useSearchInput';
 import { useNavigate } from 'react-router-dom';
+import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
+import GoBack from '../components/GoBackButton';
+import TeamItem from '../components/TeamItem';
+import useSearchInput from '../customHooks/useSearchInput';
 import Loader from '../components/Loader';
 import ErrorPush from '../components/ErrorPush';
+import { Context } from '../App';
+import axios from 'axios';
 import { MAIN_ROUTE } from '../routes';
 
 const TeamsPage = () => {
@@ -20,25 +20,27 @@ const TeamsPage = () => {
 	const [teamList, setTeamList] = useState([]);
 	const { filteredList, filterValue, setFilterValue, filterByName } = useSearchInput(teamList, 'shortName');
 
-	useEffect(async () => {
+	useEffect(async() => {
 		setLoading(true);
 		let teamListTemp = [];
 		const requests = [];
-		competitioinFavoriteIds.forEach((id, index) => {
+		competitioinFavoriteIds.forEach((id) => {
 			requests.push(`https://api.football-data.org/v2/competitions/${id}/teams`);
 		});
 		try {
-			const request = await axios.all(requests.map(async (request) => {
-				try {
-					const res = await axios.get(request, { headers: { 'X-Auth-Token': process.env.REACT_APP_API_KEY } });
-					if (res.status === 200) {
-						teamListTemp = [...teamListTemp, ...res.data.teams];
+				await axios.all(requests.map(async (request) => {
+					try {
+						const res = await axios.get(request, { headers: { 'X-Auth-Token': process.env.REACT_APP_API_KEY } });
+						if (res.status === 200) {
+							teamListTemp = [...teamListTemp, ...res.data.teams];
+						}
+					} catch (e) {
+						setError(true);
 					}
-				} catch (e) {
-					setError(true);
-				}
-			}));
-			setTeamList(teamListTemp);
+				}));
+				setTeamList(teamListTemp);
+
+
 		} catch (e) {
 			setError(true);
 		}
@@ -52,7 +54,7 @@ const TeamsPage = () => {
 
 	return (
 		<>
-			<GoBack route={MAIN_ROUTE}/>
+			<GoBack route={MAIN_ROUTE} />
 			<Container>
 				<Row>
 					<div className={'d-flex align-items-stretch justify-content-evenly flex-wrap py-5'}>

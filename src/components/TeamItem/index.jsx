@@ -29,7 +29,7 @@ const TeamItem = ({ id, name, crestUrl, founded, countryName, website }) => {
 					</Card.Body>
 					<Card.Footer className={'p-2 w-100 text-center'}>
 						<span>Веб-сайт:</span>
-						<a target={'_blank'} className={'d-block'} href={website}>{name}</a>
+						<a target={'_blank'} rel={'noreferrer'} className={'d-block'} href={website}>{name}</a>
 					</Card.Footer>
 				</Card>
 			</Col>
