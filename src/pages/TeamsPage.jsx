@@ -20,14 +20,19 @@ const TeamsPage = () => {
 	const [teamList, setTeamList] = useState([]);
 	const { filteredList, filterValue, setFilterValue, filterByName } = useSearchInput(teamList, 'shortName');
 
-	useEffect(async() => {
+	useEffect(() => {
 		setLoading(true);
 		let teamListTemp = [];
 		const requests = [];
+		if (competitioinFavoriteIds.length === 0) {
+			navigate('/');
+		}
 		competitioinFavoriteIds.forEach((id) => {
 			requests.push(`https://api.football-data.org/v2/competitions/${id}/teams`);
 		});
-		try {
+
+		const fetchData = async () => {
+			try {
 				await axios.all(requests.map(async (request) => {
 					try {
 						const res = await axios.get(request, { headers: { 'X-Auth-Token': process.env.REACT_APP_API_KEY } });
@@ -39,13 +44,13 @@ const TeamsPage = () => {
 					}
 				}));
 				setTeamList(teamListTemp);
-
-
-		} catch (e) {
-			setError(true);
-		}
-
-		setLoading(false);
+			} catch (e) {
+				setError(true);
+			} finally {
+				setLoading(false);
+			}
+		};
+		fetchData();
 	}, [competitioinFavoriteIds]);
 
 	if (loading) {

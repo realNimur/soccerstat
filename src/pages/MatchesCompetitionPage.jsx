@@ -29,19 +29,24 @@ const MatchesCompetitionPage = () => {
 	} = useDateFilter(matchList);
 
 
-	useEffect(async () => {
+	useEffect(() => {
 		setLoading(true);
-		try {
-			const request = await axios.get(`https://api.football-data.org/v2/competitions/${param.id}/matches`, {
-				headers: {
-					'X-Auth-Token': process.env.REACT_APP_API_KEY
-				}
-			});
-			setMatchList(request.data.matches);
-		} catch (e) {
-			setError(e.message);
-		}
-		setLoading(false);
+
+		const fetchData = async () => {
+			try {
+				const request = await axios.get(`https://api.football-data.org/v2/competitions/${param.id}/matches`, {
+					headers: {
+						'X-Auth-Token': process.env.REACT_APP_API_KEY
+					}
+				});
+				setMatchList(request.data.matches);
+			} catch (e) {
+				setError(e.message);
+			} finally {
+				setLoading(false);
+			}
+		};
+		fetchData();
 	}, []);
 
 	if (loading) {

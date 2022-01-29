@@ -1,16 +1,15 @@
 import React, { useContext } from 'react';
 import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
-import { Context } from '../App';
 import { useNavigate } from 'react-router-dom';
 import { MAIN_ROUTE } from '../routes';
 import useSearchInput from '../customHooks/useSearchInput';
 import GoBack from '../components/GoBackButton';
 import CompetitionItem from '../components/CompetitionItem';
+import { Context } from '../App';
 
 
 const CompetitionsPage = () => {
 	const navigate = useNavigate();
-
 	const { competitionList } = useContext(Context);
 	const { filteredList, filterValue, setFilterValue, filterByName } = useSearchInput(competitionList, 'name');
 
