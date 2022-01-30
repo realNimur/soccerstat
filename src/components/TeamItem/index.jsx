@@ -23,7 +23,7 @@ const TeamItem = ({ id, name, crestUrl, founded, countryName, website }) => {
 							variant="outline-primary"
 							className={'mb-4'}
 							onClick={() => {
-								navigate('/team/' + id);
+								navigate(`/team/${id}`);
 							}}
 						>Матчи команды</Button>
 					</Card.Body>

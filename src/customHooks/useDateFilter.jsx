@@ -33,6 +33,7 @@ const useDateFilter = (originalArray) => {
 		setEndDate(null);
 		navigate(pathname);
 		setFilteredArray(originalArray);
+		window.scrollTo(0, 0)
 	};
 
 	useEffect(() => {
